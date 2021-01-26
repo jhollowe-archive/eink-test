@@ -9,6 +9,8 @@ from PIL import Image,ImageDraw,ImageFont
 
 logging.basicConfig(level=logging.DEBUG)
 
+COLOR = 0 # red or black depending which frame buffer it is placed in
+WHITE = 1
 
 try:
 	epd = epd_control.EPD()
@@ -18,17 +20,19 @@ try:
 	font18 = ImageFont.truetype('Font.ttc', 18)
 	font24 = ImageFont.truetype('Font.ttc', 24)
 
-	# Drawing on the Horizontal image
-	logging.info("1.Drawing on the Horizontal image...")
+	# Drawing on the Vertical image
+	logging.info("1.Drawing on the Vertical image...")
 
-	blk = Image.new('1', (epd.height, epd.width), 255)
-	red = Image.new('1', (epd.height, epd.width), 255)
+	blk = Image.new('1', (epd.height, epd.width), WHITE)
+	red = Image.new('1', (epd.height, epd.width), WHITE)
 	draw_blk = ImageDraw.Draw(blk)
 	draw_red = ImageDraw.Draw(red)
 
-	draw_blk.text((10, 0), 'hello world', font = font24, fill = 0)
-	draw_red.rectangle((20, 50, 70, 100), outline = 0)
-	epd.display(epd.getbuffer(blk),epd.getbuffer(red))
+	draw_blk.text((10, 0), 'hello world', font = font24, fill = COLOR)
+	draw_red.rectangle((20, 50, 70, 100), fill = COLOR)
+	epd.display(epd.getbuffer_180(blk),epd.getbuffer_180(red))
+
+	time.sleep(2)
 
 
 

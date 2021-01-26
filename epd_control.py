@@ -3,6 +3,8 @@ import logging
 import sys
 import time
 
+from PIL import Image,ImageDraw,ImageFont
+
 import epdconfig
 
 # Display resolution
@@ -108,6 +110,11 @@ class EPD:
         self.send_data(0x02);
 
         return 0
+
+
+    def getbuffer_180(self, image):
+      return self.getbuffer(image.transpose(Image.ROTATE_180))
+
 
     def getbuffer(self, image):
         # logging.debug("bufsiz = ",int(self.width/8) * self.height)
