@@ -3,7 +3,7 @@ import logging
 import sys
 import time
 
-from . import epdconfig
+import epdconfig
 
 # Display resolution
 EPD_WIDTH       = 880

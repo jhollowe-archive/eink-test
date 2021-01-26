@@ -4,8 +4,8 @@ import logging
 import time
 import traceback
 
+import epd_control
 from PIL import Image,ImageDraw,ImageFont
-from . import epd_control
 
 logging.basicConfig(level=logging.DEBUG)
 
