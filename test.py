@@ -20,21 +20,24 @@ try:
 	font18 = ImageFont.truetype('Font.ttc', 18)
 	font24 = ImageFont.truetype('Font.ttc', 24)
 
-	logging.info("Drawing test Vertical image (SKIPPED)")
+	logging.info("Test Black/Red overlap")
 	blk = Image.new('1', (epd.height, epd.width), WHITE)
 	red = Image.new('1', (epd.height, epd.width), WHITE)
 	draw_blk = ImageDraw.Draw(blk)
 	draw_red = ImageDraw.Draw(red)
 
 	draw_blk.text((10, 0), 'hello world', font = font24, fill = COLOR)
-	draw_red.rectangle((20, 50, 70, 100), fill = COLOR)
-	# epd.display(epd.getbuffer_180(blk),epd.getbuffer_180(red))
+	draw_blk.rectangle((20, 50, 70, 100), fill = COLOR)
+	draw_red.rectangle((20, 25, 70, 75), fill = COLOR)
+	epd.display(epd.getbuffer_180(blk),epd.getbuffer_180(red))
 
 
-	logging.info("Drawing from test BMP files")
-	blk2 = Image.open("test_black.bmp")
-	red2 = Image.open("test_red.bmp")
-	epd.display(epd.getbuffer(blk2), epd.getbuffer(red2))
+	# logging.info("Drawing from test BMP files")
+	# blk2 = Image.open("test_black.bmp")
+	# red2 = Image.open("test_red.bmp")
+	# epd.display(epd.getbuffer(blk2), epd.getbuffer(red2))
+
+
 
 	time.sleep(2)
 
