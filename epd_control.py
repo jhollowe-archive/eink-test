@@ -43,10 +43,12 @@ class EPD:
         epdconfig.digital_write(self.cs_pin, 1)
 
     def ReadBusy(self):
-        logging.debug("e-Paper busy")
-        busy = epdconfig.digital_read(self.busy_pin)
-        while(busy == 1):
-            busy = epdconfig.digital_read(self.busy_pin)
+        logging.debug("waiting on display")
+        while (epdconfig.digital_read(self.busy_pin)):
+          epdconfig.GPIO.wait_for_edge(self.busy_pin, epdconfig.GPIO.FALLING, timeout=500)
+        # busy = epdconfig.digital_read(self.busy_pin)
+        # while(busy == 1):
+        #     busy = epdconfig.digital_read(self.busy_pin)
         epdconfig.delay_ms(200)
 
     def init(self):
