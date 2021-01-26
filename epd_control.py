@@ -141,6 +141,7 @@ class EPD:
         return buf
 
     def display(self, imageblack, imagered):
+        logging.debug("displaying new image")
         self.send_command(0x4F);
         self.send_data(0xAf);
 
