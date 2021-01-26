@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 try:
-	epd = epd7in5b_HD.EPD()
+	epd = epd_control.EPD()
 	epd.init()
 	epd.Clear()
 
@@ -73,5 +73,5 @@ except IOError as e:
 
 except KeyboardInterrupt:
 		logging.info("ctrl + c:")
-		epd7in5b_HD.epdconfig.module_exit()
+		epd_control.epdconfig.module_exit()
 		exit()
